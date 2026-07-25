@@ -1,0 +1,56 @@
+{
+  "campaigns": {
+    "largest_address_count": 3,
+    "largest_service_count": 3,
+    "linked": 2,
+    "total": 2
+  },
+  "capture": {
+    "by_service": {
+      "http": 69,
+      "s3": 9,
+      "ssh": 20
+    },
+    "events": 98,
+    "sessions": 31
+  },
+  "export": {
+    "benign_actors_excluded": 1,
+    "confidences": [
+      30,
+      60,
+      85,
+      90
+    ],
+    "contaminated_actors_excluded": 1,
+    "indicators": 6,
+    "misp_attributes": 20,
+    "stix_objects": 21
+  },
+  "identities": {
+    "allowlisted": 1,
+    "by_basis": {
+      "access_key": 2,
+      "address": 2,
+      "hassh": 3,
+      "path_set": 1
+    },
+    "contaminated": 1,
+    "exportable": 6,
+    "multi_homed": 2,
+    "total": 8
+  },
+  "intelligence": {
+    "access_keys": [
+      "AKIAIOSFODNN7EXAMPLE",
+      "ASIAY44TESTTEMPCRED"
+    ],
+    "fingerprints": 3,
+    "probe_types": 9,
+    "rotating_banners": 1
+  },
+  "noise": {
+    "benign_events": 16,
+    "benign_share": 0.1633
+  }
+}

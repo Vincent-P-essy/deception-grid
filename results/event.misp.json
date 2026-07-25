@@ -1,0 +1,158 @@
+{
+  "Event": {
+    "Attribute": [
+      {
+        "category": "Network activity",
+        "comment": "scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "ip-src",
+        "value": "203.0.113.45"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "ip-src",
+        "value": "203.0.113.99"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/.env"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/.git/config"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/actuator/env"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/admin/"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/api/v1/users"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/backup.sql"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/phpinfo.php"
+      },
+      {
+        "category": "Network activity",
+        "comment": "scanner wordlist entry \u2014 scanner walking an 8-path wordlist \u2014 51 event(s), scanner wordlist; stable per tool but shared between operators",
+        "to_ids": false,
+        "type": "uri",
+        "value": "/wp-login.php"
+      },
+      {
+        "category": "Network activity",
+        "comment": "SSH client 6972bb3266dd (SSH-2.0-Go) \u2014 8 event(s), client implementation fingerprint; survives a change of source address",
+        "to_ids": true,
+        "type": "ip-src",
+        "value": "198.51.100.7"
+      },
+      {
+        "category": "Network activity",
+        "comment": "SSH client 6972bb3266dd (SSH-2.0-Go) \u2014 8 event(s), client implementation fingerprint; survives a change of source address",
+        "to_ids": true,
+        "type": "ip-src",
+        "value": "203.0.113.45"
+      },
+      {
+        "category": "Network activity",
+        "comment": "SSH client 6972bb3266dd (SSH-2.0-Go) \u2014 8 event(s), client implementation fingerprint; survives a change of source address",
+        "to_ids": true,
+        "type": "hassh-md5",
+        "value": "6972bb3266dd6b5443461cbfd6cfe480"
+      },
+      {
+        "category": "Network activity",
+        "comment": "192.0.2.88 \u2014 6 event(s), single source address, seen once; likely to be reassigned",
+        "to_ids": false,
+        "type": "ip-src",
+        "value": "192.0.2.88"
+      },
+      {
+        "category": "Network activity",
+        "comment": "AWS key AKIAIOSFODNN7EXAMPLE \u2014 6 event(s), long-lived credential identifier held by the actor",
+        "to_ids": true,
+        "type": "ip-src",
+        "value": "198.51.100.7"
+      },
+      {
+        "category": "Payload delivery",
+        "comment": "AWS access key ID \u2014 AWS key AKIAIOSFODNN7EXAMPLE \u2014 6 event(s), long-lived credential identifier held by the actor",
+        "to_ids": false,
+        "type": "text",
+        "value": "AKIAIOSFODNN7EXAMPLE"
+      },
+      {
+        "category": "Network activity",
+        "comment": "SSH client e8281f2f3b91 (SSH-2.0-paramiko_3.4.0) \u2014 4 event(s), client implementation fingerprint; survives a change of source address",
+        "to_ids": true,
+        "type": "ip-src",
+        "value": "192.0.2.88"
+      },
+      {
+        "category": "Network activity",
+        "comment": "SSH client e8281f2f3b91 (SSH-2.0-paramiko_3.4.0) \u2014 4 event(s), client implementation fingerprint; survives a change of source address",
+        "to_ids": true,
+        "type": "hassh-md5",
+        "value": "e8281f2f3b911407a2fd84dd59ffc3f3"
+      },
+      {
+        "category": "Network activity",
+        "comment": "AWS key ASIAY44TESTTEMPCRED \u2014 3 event(s), long-lived credential identifier held by the actor",
+        "to_ids": true,
+        "type": "ip-src",
+        "value": "192.0.2.88"
+      },
+      {
+        "category": "Payload delivery",
+        "comment": "AWS access key ID \u2014 AWS key ASIAY44TESTTEMPCRED \u2014 3 event(s), long-lived credential identifier held by the actor",
+        "to_ids": false,
+        "type": "text",
+        "value": "ASIAY44TESTTEMPCRED"
+      }
+    ],
+    "Tag": [
+      {
+        "name": "source:\"deception-grid\""
+      },
+      {
+        "name": "tlp:amber"
+      }
+    ],
+    "analysis": "2",
+    "distribution": "0",
+    "info": "Decoy grid observations",
+    "threat_level_id": "2"
+  }
+}

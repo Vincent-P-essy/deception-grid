@@ -1,0 +1,283 @@
+{
+  "id": "bundle--47186e13-520f-5caa-a82b-81b8c90bdbd0",
+  "objects": [
+    {
+      "created": "2026-01-01T00:00:00.000Z",
+      "description": "Low-interaction decoy grid. Every observation is an interaction with a host that has no legitimate users.",
+      "id": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "identity_class": "system",
+      "modified": "2026-01-01T00:00:00.000Z",
+      "name": "deception-grid",
+      "spec_version": "2.1",
+      "type": "identity"
+    },
+    {
+      "id": "ipv4-addr--edc340e9-c070-506b-b37f-bb3a6a17e7bd",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "203.0.113.45"
+    },
+    {
+      "id": "ipv4-addr--026c8f92-1426-5ae8-b490-ba4079ce14a7",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "203.0.113.99"
+    },
+    {
+      "confidence": 60,
+      "created": "2026-07-25T21:28:44.482Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 51 event(s) across 17 session(s) from 2 address(es). Confidence 60: scanner wordlist; stable per tool but shared between operators.",
+      "id": "indicator--227f529e-1dcf-5297-9833-ea5ef6fcb4f6",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "admin-panel",
+        "git-exposure",
+        "jndi-injection",
+        "php-config",
+        "spring-actuator",
+        "template-injection",
+        "wordpress"
+      ],
+      "modified": "2026-07-25T21:28:44.482Z",
+      "name": "scanner walking an 8-path wordlist",
+      "pattern": "[network-traffic:extensions.'http-request-ext'.request_value = '/.env'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/.git/config'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/actuator/env'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/admin/'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/api/v1/users'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/backup.sql'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/phpinfo.php'] OR [network-traffic:extensions.'http-request-ext'.request_value = '/wp-login.php']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:44.482Z"
+    },
+    {
+      "created": "2026-07-25T21:28:44.482Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:44.482Z",
+      "id": "observed-data--e3c80146-d320-573b-902b-082c6b3d3074",
+      "last_observed": "2026-07-25T21:28:44.826Z",
+      "modified": "2026-07-25T21:28:44.482Z",
+      "number_observed": 51,
+      "object_refs": [
+        "ipv4-addr--edc340e9-c070-506b-b37f-bb3a6a17e7bd",
+        "ipv4-addr--026c8f92-1426-5ae8-b490-ba4079ce14a7"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    },
+    {
+      "id": "ipv4-addr--a7b5d58a-579a-51c5-9e0a-eeec9f8c5137",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "198.51.100.7"
+    },
+    {
+      "id": "ipv4-addr--edc340e9-c070-506b-b37f-bb3a6a17e7bd",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "203.0.113.45"
+    },
+    {
+      "confidence": 85,
+      "created": "2026-07-25T21:28:44.889Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 8 event(s) across 2 session(s) from 2 address(es). Confidence 85: client implementation fingerprint; survives a change of source address.",
+      "id": "indicator--dfb18a17-5d46-5f96-88fb-7f5d9d677856",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "hassh"
+      ],
+      "modified": "2026-07-25T21:28:44.889Z",
+      "name": "SSH client 6972bb3266dd (SSH-2.0-Go)",
+      "pattern": "[network-traffic:extensions.'socket-ext'.options.HASSH = '6972bb3266dd6b5443461cbfd6cfe480']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:44.889Z"
+    },
+    {
+      "created": "2026-07-25T21:28:44.889Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:44.889Z",
+      "id": "observed-data--bb6fd7aa-5088-5b23-a270-237fc387a714",
+      "last_observed": "2026-07-25T21:28:44.911Z",
+      "modified": "2026-07-25T21:28:44.889Z",
+      "number_observed": 8,
+      "object_refs": [
+        "ipv4-addr--a7b5d58a-579a-51c5-9e0a-eeec9f8c5137",
+        "ipv4-addr--edc340e9-c070-506b-b37f-bb3a6a17e7bd"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    },
+    {
+      "id": "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "192.0.2.88"
+    },
+    {
+      "confidence": 30,
+      "created": "2026-07-25T21:28:44.847Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 6 event(s) across 2 session(s) from 1 address(es). Confidence 30: single source address, seen once; likely to be reassigned.",
+      "id": "indicator--35177207-2ac1-5185-9aad-6ee5ecf98866",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "path-traversal",
+        "sql-injection"
+      ],
+      "modified": "2026-07-25T21:28:44.847Z",
+      "name": "192.0.2.88",
+      "pattern": "[ipv4-addr:value = '192.0.2.88']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:44.847Z"
+    },
+    {
+      "created": "2026-07-25T21:28:44.847Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:44.847Z",
+      "id": "observed-data--e7611513-d33d-50d5-bdb4-347020a22a5c",
+      "last_observed": "2026-07-25T21:28:44.868Z",
+      "modified": "2026-07-25T21:28:44.847Z",
+      "number_observed": 6,
+      "object_refs": [
+        "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    },
+    {
+      "id": "ipv4-addr--a7b5d58a-579a-51c5-9e0a-eeec9f8c5137",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "198.51.100.7"
+    },
+    {
+      "confidence": 90,
+      "created": "2026-07-25T21:28:44.976Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 6 event(s) across 2 session(s) from 1 address(es). Confidence 90: long-lived credential identifier held by the actor.",
+      "id": "indicator--34daf6e9-f55f-532c-9035-b10214893876",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "access_key"
+      ],
+      "modified": "2026-07-25T21:28:44.976Z",
+      "name": "AWS key AKIAIOSFODNN7EXAMPLE",
+      "pattern": "[user-account:account_login = 'AKIAIOSFODNN7EXAMPLE']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:44.976Z"
+    },
+    {
+      "created": "2026-07-25T21:28:44.976Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:44.976Z",
+      "id": "observed-data--253440e7-3d7a-5f1b-a902-38d4e0895564",
+      "last_observed": "2026-07-25T21:28:44.998Z",
+      "modified": "2026-07-25T21:28:44.976Z",
+      "number_observed": 6,
+      "object_refs": [
+        "ipv4-addr--a7b5d58a-579a-51c5-9e0a-eeec9f8c5137"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    },
+    {
+      "id": "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "192.0.2.88"
+    },
+    {
+      "confidence": 85,
+      "created": "2026-07-25T21:28:44.933Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 4 event(s) across 1 session(s) from 1 address(es). Confidence 85: client implementation fingerprint; survives a change of source address.",
+      "id": "indicator--9c89aac3-a127-5ed6-b2c3-4191efa73bd8",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "hassh"
+      ],
+      "modified": "2026-07-25T21:28:44.933Z",
+      "name": "SSH client e8281f2f3b91 (SSH-2.0-paramiko_3.4.0)",
+      "pattern": "[network-traffic:extensions.'socket-ext'.options.HASSH = 'e8281f2f3b911407a2fd84dd59ffc3f3']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:44.933Z"
+    },
+    {
+      "created": "2026-07-25T21:28:44.933Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:44.933Z",
+      "id": "observed-data--1d3481a6-c78b-52c9-9793-7965c9ebde80",
+      "last_observed": "2026-07-25T21:28:44.933Z",
+      "modified": "2026-07-25T21:28:44.933Z",
+      "number_observed": 4,
+      "object_refs": [
+        "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    },
+    {
+      "id": "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26",
+      "spec_version": "2.1",
+      "type": "ipv4-addr",
+      "value": "192.0.2.88"
+    },
+    {
+      "confidence": 90,
+      "created": "2026-07-25T21:28:45.020Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "description": "Observed by a decoy with no legitimate users. 3 event(s) across 1 session(s) from 1 address(es). Confidence 90: long-lived credential identifier held by the actor.",
+      "id": "indicator--71a74929-5dda-5767-8f64-2289e521da56",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "labels": [
+        "access_key"
+      ],
+      "modified": "2026-07-25T21:28:45.020Z",
+      "name": "AWS key ASIAY44TESTTEMPCRED",
+      "pattern": "[user-account:account_login = 'ASIAY44TESTTEMPCRED']",
+      "pattern_type": "stix",
+      "spec_version": "2.1",
+      "type": "indicator",
+      "valid_from": "2026-07-25T21:28:45.020Z"
+    },
+    {
+      "created": "2026-07-25T21:28:45.020Z",
+      "created_by_ref": "identity--4e937796-689d-5c13-881e-8186a531d72d",
+      "first_observed": "2026-07-25T21:28:45.020Z",
+      "id": "observed-data--c29d7b35-c0b0-56ea-a4b0-f720a1af13e0",
+      "last_observed": "2026-07-25T21:28:45.020Z",
+      "modified": "2026-07-25T21:28:45.020Z",
+      "number_observed": 3,
+      "object_refs": [
+        "ipv4-addr--7136e3f6-ddef-5d08-894a-a45077799b26"
+      ],
+      "spec_version": "2.1",
+      "type": "observed-data"
+    }
+  ],
+  "type": "bundle",
+  "x_deception_grid": {
+    "benign_actors_excluded": 1,
+    "benign_share_of_events": 0.1633,
+    "contaminated_actors_excluded": 1,
+    "note": "Known-benign sources are excluded from this bundle by design, along with any identity that also matched allowlisted traffic."
+  }
+}
