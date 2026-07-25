@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "deception-grid"
+version = "1.0.0"
+description = "Low-interaction SSH/HTTP/S3 decoys with actor fingerprinting and STIX 2.1 export"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Vincent Plessy" }]
+keywords = ["honeypot", "deception", "hassh", "stix", "misp", "threat-intelligence"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+dependencies = ["rich>=13.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-asyncio>=0.23", "ruff>=0.4"]
+
+[project.scripts]
+decoy = "decoy.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Vincent-P-essy/deception-grid"
+Issues = "https://github.com/Vincent-P-essy/deception-grid/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/decoy"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["error"]
