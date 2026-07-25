@@ -1,0 +1,141 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: pytest -q
+
+  # The tests bind real sockets, so they prove the decoys work. This job proves
+  # the README is not lying about what they found — every figure printed there
+  # is asserted here against a capture made in this run.
+  prove-the-claim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+
+      - name: The selftest passes against real sockets
+        run: python -m decoy.cli selftest
+
+      - name: The published figures still reproduce
+        run: python scripts/reproduce.py --check
+
+      - name: Every figure in the README is the one the code produces
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+
+          results = json.loads(pathlib.Path("results/expected.json").read_text())
+          readme = pathlib.Path("README.md").read_text()
+
+          claims = {
+              "98 events captured":        results["capture"]["events"] == 98,
+              "31 sessions":               results["capture"]["sessions"] == 31,
+              "8 identities":              results["identities"]["total"] == 8,
+              "6 exportable":              results["identities"]["exportable"] == 6,
+              "1 contaminated":            results["identities"]["contaminated"] == 1,
+              "2 multi-homed":             results["identities"]["multi_homed"] == 2,
+              "2 linked campaigns":        results["campaigns"]["linked"] == 2,
+              "campaign spans 3 services": results["campaigns"]["largest_service_count"] == 3,
+              "campaign spans 3 addrs":    results["campaigns"]["largest_address_count"] == 3,
+              "16% benign share":          results["noise"]["benign_share"] == 0.1633,
+              "1 rotating banner":         results["intelligence"]["rotating_banners"] == 1,
+              "2 access keys":             len(results["intelligence"]["access_keys"]) == 2,
+              "9 probe types":             results["intelligence"]["probe_types"] == 9,
+              "6 indicators":              results["export"]["indicators"] == 6,
+              "confidences 30/60/85/90":   results["export"]["confidences"] == [30, 60, 85, 90],
+              "1 benign excluded":         results["export"]["benign_actors_excluded"] == 1,
+              "1 contaminated excluded":
+                  results["export"]["contaminated_actors_excluded"] == 1,
+          }
+          failed = [name for name, ok in claims.items() if not ok]
+
+          # Every identity ends up in exactly one disposition, or the report and
+          # the export disagree about what was published.
+          total = (results["identities"]["exportable"]
+                   + results["identities"]["allowlisted"]
+                   + results["identities"]["contaminated"])
+          if total != results["identities"]["total"]:
+              failed.append(f"dispositions sum to {total}, not "
+                            f"{results['identities']['total']}")
+
+          # An identity reported and then not exported is the failure mode this
+          # job exists to catch.
+          if results["export"]["indicators"] != results["identities"]["exportable"]:
+              failed.append("exportable identities and indicators disagree")
+
+          for figure in ("98 events", "16%", "8 identities", "6 ", "STIX 2.1"):
+              if figure not in readme:
+                  failed.append(f"README no longer mentions {figure!r}")
+
+          if failed:
+              print("README and code disagree:")
+              for item in failed:
+                  print(f"  - {item}")
+              sys.exit(1)
+          print(f"all {len(claims)} published figures verified")
+          PY
+
+      - name: Nothing benign reaches the export
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          sys.path.insert(0, "src")
+          from decoy.analyse import analyse
+          from decoy.intel import to_misp, to_stix
+          from decoy.selftest import capture
+
+          report = analyse(capture())
+          published = json.dumps(to_stix(report)) + json.dumps(to_misp(report))
+
+          leaked = []
+          for actor in report.benign_actors + report.contaminated:
+              if actor.key and actor.key in published:
+                  leaked.append(f"signal {actor.key}")
+          for address in report.benign_addresses:
+              if f'"{address}"' in published:
+                  leaked.append(f"address {address}")
+
+          if leaked:
+              print("allowlisted material reached an export:")
+              for item in leaked:
+                  print(f"  - {item}")
+              sys.exit(1)
+          print(f"{len(report.benign_actors)} allowlisted and "
+                f"{len(report.contaminated)} contaminated identities withheld")
+          PY
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: The hardened image builds and runs as a non-root user
+        run: |
+          docker build -f deploy/Dockerfile -t deception-grid:ci .
+          test "$(docker run --rm --entrypoint id deception-grid:ci -u)" = "10001"
+          docker run --rm --read-only --cap-drop ALL \
+            --security-opt no-new-privileges:true \
+            deception-grid:ci --version
