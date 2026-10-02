@@ -1,0 +1,7 @@
+[
+  {
+    "command": "decoy selftest",
+    "exit": 0,
+    "output": "                                   selftest                                   \n┏━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n┃   ┃ check                                                                  ┃\n┡━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩\n│ ✓ │ listeners accepted traffic (98 events)                                 │\n│ ✓ │ SSH KEXINIT parsed and fingerprinted                                   │\n│ ✓ │ one HASSH seen under two banners — a rotating client was still grouped │\n│ ✓ │ a wordlist walked from two addresses grouped as one identity           │\n│ ✓ │ 2 identities grouped across source addresses                           │\n│ ✓ │ 2 AWS access key id(s) recovered from S3 probes                        │\n│ ✓ │ 2 campaign(s) joined identities across services                        │\n│ ✓ │ benign traffic present and excluded (16% of events)                    │\n│ ✓ │ 1 identity matched the allowlist and were withheld                     │\n│ ✓ │ no allowlisted address reached the STIX bundle                         │\n│ ✓ │ no allowlisted or contaminated signal published as an indicator        │\n└───┴────────────────────────────────────────────────────────────────────────┘\n\nall 11 checks passed — against real sockets, not mocks\n"
+  }
+]

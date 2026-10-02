@@ -17,6 +17,12 @@ So this one leads with that number.
 
 ---
 
+## Execution preview
+
+![deception-grid execution](docs/screenshots/execution.png)
+
+Local execution of `decoy selftest`. The input and output shown come from the repository example or test fixtures. [Verification](docs/verification.md).
+
 ## What is in the box
 
 ```
